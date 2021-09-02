@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Desafio.D1.Infra.Data.Repository
@@ -17,9 +16,10 @@ namespace Desafio.D1.Infra.Data.Repository
             _dbSet = context.Set<TEntity>();
             _context = context;
         }
-        public virtual TEntity Add(TEntity entity)
+        public virtual async Task Add(TEntity entity)
         {
-            return _dbSet.Add(entity).Entity;
+             _dbSet.Add(entity);
+            await SaveChanges();
         }
 
         public virtual void Delete(TEntity entity)
@@ -30,6 +30,7 @@ namespace Desafio.D1.Infra.Data.Repository
         public virtual async Task Delete(int id)
         {
             Delete(await GetById(id));
+            await SaveChanges();
         }
 
         public virtual async Task<IEnumerable<TEntity>> GetAll()
@@ -46,9 +47,10 @@ namespace Desafio.D1.Infra.Data.Repository
         {
             return _dbSet.Where(predicate);
         }
-        public virtual TEntity Update(TEntity entity)
+        public virtual async Task Update(TEntity entity)
         {
-            return _dbSet.Update(entity).Entity;
+            _dbSet.Update(entity);
+            await SaveChanges();
         }
 
         public virtual async Task SaveChanges()

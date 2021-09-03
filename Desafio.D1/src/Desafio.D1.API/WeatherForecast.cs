@@ -1,3 +1,4 @@
+using Desafio.D1.Application.ViewModels;
 using System;
 
 namespace Desafio.D1.API
@@ -11,5 +12,6 @@ namespace Desafio.D1.API
         public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 
         public string Summary { get; set; }
+
     }
 }

@@ -7,7 +7,7 @@ namespace Desafio.D1.Domain.Entities
     public partial class ClientesEndereco
     {
         public Guid Id { get; set; }
-        public int IdCliente { get; set; }
+        public Guid IdCliente { get; set; }
         public Guid IdEndereco { get; set; }
 
         public virtual Cliente IdClienteNavigation { get; set; }

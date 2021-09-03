@@ -9,12 +9,12 @@ namespace Desafio.D1.Domain.Interfaces.Repository
     public interface IRepository<TEntity> : IDisposable where TEntity : class
     {
         Task Add(TEntity entity);
-        Task<TEntity> GetById(int id);
+        Task<TEntity> GetById(Guid id);
         Task<IEnumerable<TEntity>> GetAll();
         IEnumerable<TEntity> GetWhere(Func<TEntity, bool> predicate);
         Task Update(TEntity entity);
         void Delete(TEntity entity);
-        Task Delete(int id);
+        Task Delete(Guid id);
 
         Task SaveChanges();
     }

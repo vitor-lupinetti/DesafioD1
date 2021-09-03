@@ -1,3 +1,4 @@
+using Desafio.D1.API.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,8 @@ namespace Desafio.D1.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Desafio.D1.API", Version = "v1" });
             });
+            services.AddAutoMapper(typeof(Startup));
+            services.ResolveDependencies();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

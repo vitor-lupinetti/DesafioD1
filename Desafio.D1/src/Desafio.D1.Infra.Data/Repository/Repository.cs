@@ -27,7 +27,7 @@ namespace Desafio.D1.Infra.Data.Repository
             _dbSet.Remove(entity);
         }
 
-        public virtual async Task Delete(int id)
+        public virtual async Task Delete(Guid id)
         {
             Delete(await GetById(id));
             await SaveChanges();
@@ -38,7 +38,7 @@ namespace Desafio.D1.Infra.Data.Repository
             return await _dbSet.ToListAsync();
         }
 
-        public virtual async Task<TEntity> GetById(int id)
+        public virtual async Task<TEntity> GetById(Guid id)
         {
             return await _dbSet.FindAsync(id);
         }

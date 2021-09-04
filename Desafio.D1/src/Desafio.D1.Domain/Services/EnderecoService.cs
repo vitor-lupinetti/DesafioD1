@@ -33,6 +33,11 @@ namespace Desafio.D1.Domain.Services
             _enderecoRepository.Dispose();
         }
 
+        public async Task<IEnumerable<Endereco>> GetAdressesByUserId(Guid id)
+        {
+            return await _enderecoRepository.GetAdressesByUserId(id);
+        }
+
         public async Task<IEnumerable<Endereco>> ObterTodos()
         {
             return await _enderecoRepository.GetAll();

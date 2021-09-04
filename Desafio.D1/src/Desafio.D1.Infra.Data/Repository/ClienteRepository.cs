@@ -19,7 +19,7 @@ namespace Desafio.D1.Infra.Data.Repository
         {
 
             var cn = _context.Database.GetDbConnection();
-            var sql = @"SELECT c.*, e.*, t.Identificacao, t.Numero as NumeroTel from Clientes c 
+            var sql = @"SELECT c.*, e.Id as EnderecoId, e.Rua, e.Bairro, e.Cep, e.Numero, t.Id as TelefoneId, t.Identificacao, t.Numero as NumeroTel from Clientes c 
                         join Clientes_Enderecos ce on c.Id = ce.IdCliente
                         join Enderecos e on ce.IdEndereco = e.Id
                         join Clientes_Telefones ct on ct.IdCliente = c.Id
@@ -31,6 +31,23 @@ namespace Desafio.D1.Infra.Data.Repository
 
             return clientes;
 
+        }
+
+        public override async Task<Cliente> GetById(System.Guid id)
+        {
+            var cn = _context.Database.GetDbConnection();
+            var sql = @"SELECT c.*, e.Id as EnderecoId, e.Rua, e.Bairro, e.Cep, e.Numero, t.Id as TelefoneId, t.Identificacao, t.Numero as NumeroTel from Clientes c 
+                        join Clientes_Enderecos ce on c.Id = ce.IdCliente
+                        join Enderecos e on ce.IdEndereco = e.Id
+                        join Clientes_Telefones ct on ct.IdCliente = c.Id
+                        join Telefones t on ct.IdTelefone = t.Id 
+                        where c.Id = @sid";
+                        
+
+
+            var clientes = await cn.QueryAsync<Cliente>(sql , new { sid = id });
+
+            return clientes.AsList()[0];
         }
     }
 }

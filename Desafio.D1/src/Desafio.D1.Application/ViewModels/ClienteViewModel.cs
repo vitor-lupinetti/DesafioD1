@@ -4,6 +4,10 @@ namespace Desafio.D1.Application.ViewModels
 {
     public class ClienteViewModel
     {
+        //public ClienteViewModel()
+        //{
+        //    Id = Guid.NewGuid();
+        //}
         public Guid Id { get; set; }
         public string Nome { get; set; }
         public DateTime DataNascimento { get; set; }

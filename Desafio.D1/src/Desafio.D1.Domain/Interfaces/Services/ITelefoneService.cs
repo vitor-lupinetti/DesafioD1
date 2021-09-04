@@ -9,6 +9,8 @@ namespace Desafio.D1.Domain.Interfaces.Services
     {
         Task<Telefone> Adicionar(Telefone telefone);
         Task<IEnumerable<Telefone>> ObterTodos();
+        Task<IEnumerable<Telefone>> GetPhonesByUserId(Guid id);
+
         Task Atualizar(Telefone telefone);
         Task Remover(Guid id);
     }

@@ -31,6 +31,11 @@ namespace Desafio.D1.Domain.Services
             _telefoneRepository.Dispose();
         }
 
+        public async Task<IEnumerable<Telefone>> GetPhonesByUserId(Guid id)
+        {
+            return await _telefoneRepository.GetPhonesByUserId(id);
+        }
+
         public async Task<IEnumerable<Telefone>> ObterTodos()
         {
             return await _telefoneRepository.GetAll();

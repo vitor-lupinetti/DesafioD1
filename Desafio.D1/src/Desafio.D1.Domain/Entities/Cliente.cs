@@ -12,6 +12,7 @@ namespace Desafio.D1.Domain.Entities
         {
             ClientesEnderecos = new HashSet<ClientesEndereco>();
             ClientesTelefones = new HashSet<ClientesTelefone>();
+            Id = Guid.NewGuid();
         }
 
         public Guid Id { get; set; }
@@ -26,6 +27,9 @@ namespace Desafio.D1.Domain.Entities
 
 
         [NotMapped]
+        public Guid EnderecoId { get; set; }
+
+        [NotMapped]
         public string Rua { get; set; }
         [NotMapped]
 
@@ -37,6 +41,8 @@ namespace Desafio.D1.Domain.Entities
 
         public int Numero { get; set; }
         [NotMapped]
+        public Guid TelefoneId { get; set; }
+        [NotMapped]
 
         public string NumeroTel { get; set; }
         [NotMapped]
@@ -44,7 +50,7 @@ namespace Desafio.D1.Domain.Entities
         public string Identificacao { get; set; }
 
         public virtual ICollection<ClientesEndereco> ClientesEnderecos { get; set; }
-        public virtual Telefone Telefone { get; set; }
+        //public virtual Telefone Telefone { get; set; }
         public virtual ICollection<ClientesTelefone> ClientesTelefones { get; set; }
     }
 }

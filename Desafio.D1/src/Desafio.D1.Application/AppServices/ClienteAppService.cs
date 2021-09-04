@@ -37,14 +37,18 @@ namespace Desafio.D1.Application.AppServices
             var clienteTelefone = await _clientesTelefoneService.Adicionar(new ClientesTelefone { IdCliente = clienteInserted.Id, IdTelefone = telefone.Id });
         }
 
-        public Task Atualizar(ClienteViewModel cliente)
+        public async Task Atualizar(ClienteUpdateViewModel cliente)
         {
-            throw new NotImplementedException();
+            await _clienteService.Atualizar(_mapper.Map<Cliente>(cliente));
         }
 
-        public async Task<ClienteViewModel> ObterPorId(Guid id)
+        public async Task<ClienteUpdateViewModel> ObterPorId(Guid id)
         {
-            return _mapper.Map<ClienteViewModel>(await _clienteService.ObterPorId(id));
+            var cliente = _mapper.Map<ClienteUpdateViewModel>(await _clienteService.ObterPorId(id));
+            cliente.Enderecos = _mapper.Map<IEnumerable<EnderecoViewModel>>(await _enderecoService.GetAdressesByUserId(id));
+            cliente.Telefones = _mapper.Map<IEnumerable<TelefoneViewModel>>(await _telefoneService.GetPhonesByUserId(id));
+
+            return cliente;
         }
 
         public async Task<IEnumerable<ClienteViewModel>> ObterTodos()

@@ -11,6 +11,8 @@ namespace Desafio.D1.Domain.Interfaces.Services
     {
         Task<Endereco> Adicionar(Endereco endereco);
         Task<IEnumerable<Endereco>> ObterTodos();
+        Task<IEnumerable<Endereco>> GetAdressesByUserId(Guid id);
+
         Task Atualizar(Endereco endereco);
         Task Remover(Guid id);
     }

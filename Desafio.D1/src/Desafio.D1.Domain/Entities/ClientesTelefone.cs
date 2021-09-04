@@ -6,6 +6,10 @@ namespace Desafio.D1.Domain.Entities
 {
     public partial class ClientesTelefone
     {
+        public ClientesTelefone()
+        {
+            Id = Guid.NewGuid();
+        }
         public Guid Id { get; set; }
         public Guid IdCliente { get; set; }
         public Guid IdTelefone { get; set; }

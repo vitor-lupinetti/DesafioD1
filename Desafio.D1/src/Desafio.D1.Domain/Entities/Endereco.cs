@@ -10,6 +10,7 @@ namespace Desafio.D1.Domain.Entities
         public Endereco()
         {
             ClientesEnderecos = new HashSet<ClientesEndereco>();
+            Id = Guid.NewGuid();
         }
 
         public Guid Id { get; set; }

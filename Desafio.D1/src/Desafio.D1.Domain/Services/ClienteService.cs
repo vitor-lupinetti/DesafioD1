@@ -35,7 +35,8 @@ namespace Desafio.D1.Domain.Services
 
         public async Task<Cliente> ObterPorId(Guid id)
         {
-            return await _clienteRepository.GetById(id);
+            var cliente = await _clienteRepository.GetById(id);
+            return cliente;
         }
 
         public async Task<IEnumerable<Cliente>> ObterTodos()

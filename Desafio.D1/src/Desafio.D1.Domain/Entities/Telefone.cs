@@ -10,6 +10,7 @@ namespace Desafio.D1.Domain.Entities
         public Telefone()
         {
             ClientesTelefones = new HashSet<ClientesTelefone>();
+            Id = Guid.NewGuid();
         }
 
         public Guid Id { get; set; }

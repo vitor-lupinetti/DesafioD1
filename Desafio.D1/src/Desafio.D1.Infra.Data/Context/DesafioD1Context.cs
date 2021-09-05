@@ -3,6 +3,7 @@ using Desafio.D1.Domain.Entities;
 using Desafio.D1.Infra.Data.ContextConfig;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
@@ -10,8 +11,10 @@ namespace Desafio.D1.Infra.Data
 {
     public partial class DesafioD1Context : DbContext
     {
-        public DesafioD1Context()
+        private readonly IConfiguration _configuration;
+        public DesafioD1Context(IConfiguration configuration)
         {
+            _configuration = configuration;
         }
 
         public DesafioD1Context(DbContextOptions<DesafioD1Context> options)
@@ -27,9 +30,10 @@ namespace Desafio.D1.Infra.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=DesafioD1;Integrated Security=True");
+                optionsBuilder.UseSqlServer(_configuration.GetSection("ConnectionString").Value);
             }
         }
 

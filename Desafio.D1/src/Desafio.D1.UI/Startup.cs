@@ -27,6 +27,7 @@ namespace Desafio.D1.UI
             services.ResolveDependencies();
             services.AddControllersWithViews();
             services.AddAutoMapper(typeof(Startup));
+            services.AddSingleton<IConfiguration>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

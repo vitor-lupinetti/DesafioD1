@@ -24,11 +24,6 @@ namespace Desafio.D1.UI.Controllers
             return View(clientes);
         }
 
-        // GET: ClientesController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: ClientesController/Create
         public ActionResult Create()
@@ -78,25 +73,5 @@ namespace Desafio.D1.UI.Controllers
             return View("Index", clientes);
         }
 
-        // GET: ClientesController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: ClientesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

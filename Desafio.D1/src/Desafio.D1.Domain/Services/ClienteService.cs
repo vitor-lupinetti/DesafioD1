@@ -3,8 +3,6 @@ using Desafio.D1.Domain.Interfaces.Repository;
 using Desafio.D1.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Desafio.D1.Domain.Services
@@ -37,6 +35,11 @@ namespace Desafio.D1.Domain.Services
         {
             var cliente = await _clienteRepository.GetById(id);
             return cliente;
+        }
+
+        public IEnumerable<Cliente> ObterPorNome(string nome)
+        {
+            return _clienteRepository.ObterPorNome(nome);
         }
 
         public async Task<IEnumerable<Cliente>> ObterTodos()

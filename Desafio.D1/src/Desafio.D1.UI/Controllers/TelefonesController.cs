@@ -28,7 +28,7 @@ namespace Desafio.D1.UI.Controllers
         public async Task<ActionResult> Create(TelefoneViewModel tel, Guid clienteId)
         {
             await _telefoneAppService.Adicionar(tel, clienteId);
-            return View();
+            return RedirectToAction("Index", "Clientes", null);
         }
     }
 }

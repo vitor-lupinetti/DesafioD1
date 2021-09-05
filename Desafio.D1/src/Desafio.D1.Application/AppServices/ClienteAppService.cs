@@ -51,6 +51,13 @@ namespace Desafio.D1.Application.AppServices
             return cliente;
         }
 
+        public IEnumerable<ClienteViewModel> ObterPorNome(string nome)
+        {
+            var clientes = _mapper.Map<IEnumerable<ClienteViewModel>>(_clienteService.ObterPorNome(nome));
+
+            return clientes;
+        }
+
         public async Task<IEnumerable<ClienteViewModel>> ObterTodos()
         {
             return _mapper.Map<IEnumerable<ClienteViewModel>>(await _clienteService.ObterTodos());

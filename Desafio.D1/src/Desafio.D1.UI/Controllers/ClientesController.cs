@@ -70,6 +70,14 @@ namespace Desafio.D1.UI.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Search(string nome)
+        {
+            var clientes = _clienteAppService.ObterPorNome(nome);
+            return View("Index", clientes);
+        }
+
         // GET: ClientesController/Delete/5
         public ActionResult Delete(int id)
         {

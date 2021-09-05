@@ -10,6 +10,7 @@ namespace Desafio.D1.Domain.Interfaces.Services
         Task<Cliente> Adicionar(Cliente cliente);
         Task<IEnumerable<Cliente>> ObterTodos();
         Task<Cliente> ObterPorId(Guid id);
+        IEnumerable<Cliente> ObterPorNome(string nome);
         Task Atualizar(Cliente cliente);
         Task Remover(Guid id);
     }

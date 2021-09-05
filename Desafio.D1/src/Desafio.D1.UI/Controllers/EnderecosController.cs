@@ -29,7 +29,7 @@ namespace Desafio.D1.UI.Controllers
         public async Task<ActionResult> Create(EnderecoViewModel end, Guid clienteId)
         {
             await _enderecoAppService.Adicionar(end, clienteId);
-            return View();
-        }
+            return RedirectToAction("Index", "Clientes", null);
+         }
     }
 }

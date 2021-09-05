@@ -15,24 +15,7 @@ namespace Desafio.D1.Infra.Data.Repository
             _context = context;
         }
 
-        public override async Task<IEnumerable<Cliente>> GetAll()
-        {
-
-            var cn = _context.Database.GetDbConnection();
-            var sql = @"SELECT c.*, e.Id as EnderecoId, e.Rua, e.Bairro, e.Cep, e.Numero, t.Id as TelefoneId, t.Identificacao, t.Numero as NumeroTel from Clientes c 
-                        join Clientes_Enderecos ce on c.Id = ce.IdCliente
-                        join Enderecos e on ce.IdEndereco = e.Id
-                        join Clientes_Telefones ct on ct.IdCliente = c.Id
-                        join Telefones t on ct.IdTelefone = t.Id";
-
-
-
-            var clientes = await cn.QueryAsync<Cliente>(sql);
-
-            return clientes;
-
-        }
-
+        
         public override async Task<Cliente> GetById(System.Guid id)
         {
             var cn = _context.Database.GetDbConnection();
@@ -48,6 +31,12 @@ namespace Desafio.D1.Infra.Data.Repository
             var clientes = await cn.QueryAsync<Cliente>(sql , new { sid = id });
 
             return clientes.AsList()[0];
+        }
+
+        public IEnumerable<Cliente> ObterPorNome(string nome)
+        {
+            var clientes =  GetWhere(c => c.Nome == nome);
+            return clientes;
         }
     }
 }
